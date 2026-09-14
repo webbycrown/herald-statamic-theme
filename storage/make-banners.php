@@ -77,7 +77,6 @@ $photos = [
     'features' => $imgDir . '/hero-culture.jpg',
     'reporters' => $imgDir . '/members-1.jpg',
     'contact' => $imgDir . '/about.jpg',
-    'thumb' => $imgDir . '/hero-politics.jpg',
 ];
 
 $im = loadPhoto($photos['home'], 1600, 900);
@@ -92,15 +91,6 @@ text($im, $fontR, 28, 80, 360, $paper, 'A city desk. Named bylines. Dated storie
 text($im, $fontB, 20, 80, 470, $teal, 'herald-statamic.webbydemo.in');
 text($im, $fontR, 18, 80, 780, $paper, 'News / Sections / Features / Reporters');
 saveJpg($im, $outDir . '/01-herald-main.jpg');
-
-$im = loadPhoto($photos['thumb'], 600, 600);
-imagealphablending($im, true);
-shade($im, $ink, 0, 0, 600, 600, 48);
-imagefilledrectangle($im, 0, 488, 600, 600, imagecolorallocate($im, $ink[0], $ink[1], $ink[2]));
-imagefilledrectangle($im, 0, 480, 600, 488, imagecolorallocate($im, $teal[0], $teal[1], $teal[2]));
-text($im, $fontB, 42, 36, 548, $paper, 'HERALD');
-text($im, $fontR, 12, 36, 576, $teal, 'herald-statamic.webbydemo.in');
-saveJpg($im, $outDir . '/00-herald-thumb.jpg');
 
 $slides = [
     ['02-herald-home.jpg', $photos['home'], 'Home', 'City hall, markets, politics, and culture desks'],
