@@ -1,0 +1,18 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: layouts
+            field:
+              options:
+                grid: 'Grid Based Layout'
+                category-based-grouping: 'Category Based Grouping'
+                simple: 'Simple Layout'
+              max_items: 1
+              type: select
+              display: layouts
+              always_save: true
+              default: simple

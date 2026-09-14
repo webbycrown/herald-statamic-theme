@@ -1,0 +1,114 @@
+{{if card_based_grid == "post"}}
+<div
+    class="wb-insights-from-section relative 2xl:pt-[100px] 2xl:pb-[120px] xl:pt-20 xl:pb-20 lg:pt-16 lg:pb-16 md:pt-14 md:pb-14 sm:pt-12 md:pb-12 pt-10 pb-10">
+    <div class="container">
+        {{ collection:{collections} as="list" paginate={pagination} limit="{limit}" }}
+        {{button = button}}
+
+        <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 md:gap-8 lg:gap-10 grid_append">
+            {{list}}
+
+            {{page_builder}}
+            {{ if type == "banner_section" }}
+            <div class="border border-gray-700 p-6 grid-item-append">
+                <h4
+                    class="lg:text-25 sm:text-20 text-lg lg:mb-4 mb-3 leading-lineHeight text-black font-Larken font-medium">
+                    {{title}}</h4>
+                <div class="-mr-6">
+                    <div class="relative w-full before:content-[''] before:block before:pt-[64%]">
+                        <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{thumb_image}}" alt="">
+                        <div class="sm:w-11/12 w-full px-6 py-5 -ml-6 bg-gray-200 rounded-tr-2xl relative">
+                            <p class="text-md leading-lineHeight font-normal text-gray-800">{{thumb_description
+                                truncate="80"}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ block:button }}
+                <a href="{{url}}"
+                    class="mt-5 font-bold flex items-center md:text-lg text-md hover:text-black text-vividblue-400">
+                    {{text}}
+                    {{ if icon ends_with ".svg" }}
+                    {{ svg src='{{icon}}' class="ml-1" width="16" height="16" viewBox="0 0 16 16" fill="none" }}
+                    {{ else }}
+                    <img src="{{ icon }}" class="ml-1" width="16" height="16" alt="">
+                    {{ /if }}
+                </a>
+                {{ /block:button }}
+            </div>
+            {{ /if }}
+            {{ /page_builder }}
+
+
+            {{/list}}
+        </div>
+
+        <div class="text-center pt-6 md:pt-8 lg:pt-10 xl:pt-12 2xl:pt-[60px] pagination-part pagination">
+            <nav class="isolate inline-flex" aria-label="Pagination">
+                {{ paginate }}
+                {{partial:pagination}}
+                {{ /paginate }}
+            </nav>
+        </div>
+
+        {{ /collection:{collections} }}
+
+    </div>
+</div>
+{{elseif card_based_grid == 'profile'}}
+<div
+    class="relative 2xl:pt-[100px] 2xl:pb-[120px] xl:pt-20 xl:pb-20 lg:pt-16 lg:pb-16 md:pt-14 md:pb-14 sm:pt-12 md:pb-12 pt-10 pb-10">
+    <div class="container">
+        {{ collection:{collections} as="list" paginate={pagination} limit="{limit}" }}
+        <div class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7 grid_append">
+            {{list}}
+            {{page_builder}}
+            {{if type == 'consultants_members'}}
+            <div class="relative group grid-item-append">
+                <div
+                    class="w-full h-full before:pt-[100%] before:content-[''] before:block after:bg-custom-gradient after:absolute after:bottom-0 after:left-0 after:w-full after:h-4/6 after:content-[''] after:block">
+                    <img src="{{image}}" class="absolute top-0 left-0 w-full h-full object-cover" alt="">
+
+                    <div class="py-6 px-7 relative z-1 bg-custom-gradient">
+                        <h4
+                            class="lg:text-25 sm:text-20 text-lg mb-1 leading-lineHeight text-white tracking-wide group-hover:text-vividblue-400 font-Larken font-bold">
+                            <a href="{{url}}" class="text-currentColor">{{title}}</a>
+                        </h4>
+                        <p class="text-md leading-lineHeight font-medium text-white tracking-wide">- {{position}}</p>
+                    </div>
+
+                </div>
+            </div>
+            {{/if}}
+            {{ /page_builder }}
+            {{ /list }}
+
+        </div>
+        <div class="text-center pt-6 md:pt-8 lg:pt-10 xl:pt-12 2xl:pt-[60px] pagination-part pagination">
+            <nav class="isolate inline-flex" aria-label="Pagination">
+                {{ paginate }}
+                {{partial:pagination}}
+                {{ /paginate }}
+            </nav>
+        </div>
+
+        {{ /collection:{collections} }}
+    </div>
+</div>
+{{elseif card_based_grid == 'masonry'}}
+
+
+
+
+<div class="herald-news-masonry pt-6 md:pt-8 lg:pt-10">
+{{ if get:category }}
+{{ collection:{collections} as="list" paginate={pagination} limit="{limit}" sort="date:desc" categories:contains="{get:category}" }}
+{{ partial:news-cards }}
+{{ /collection:{collections} }}
+{{ else }}
+{{ collection:{collections} as="list" paginate={pagination} limit="{limit}" sort="date:desc" }}
+{{ partial:news-cards }}
+{{ /collection:{collections} }}
+{{ /if }}
+</div>
+
+{{/if}}

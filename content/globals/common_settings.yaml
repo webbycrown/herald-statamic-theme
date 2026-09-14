@@ -1,0 +1,13 @@
+title: 'Common Settings'
+data:
+  description: |-
+    Herald uses cookies to enhance your browsing experience, analyze site usage, and personalize content.
+     Cookies help us improve functionality and tailor our services to your preferences. By continuing to use
+     our website, you consent to our cookie policy. For more details, please review our <u
+    class="decoration-vividblue-400">Privacy Policy.</u>
+  button_2:
+    -
+      id: mawde6yk
+      text: 'Accept All Cookies'
+      link: 'javascript:;'
+      icon: image/redirect.svg

@@ -1,0 +1,118 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: footer_about
+            field:
+              type: textarea
+              display: 'Footer About'
+          -
+            handle: copyright_text
+            field:
+              type: text
+              display: 'Copyright Text'
+          -
+            handle: policies
+            field:
+              max_rows: 2
+              type: grid
+              display: Policies
+              fields:
+                -
+                  handle: title
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: title
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    replicator_preview: true
+                    hide_display: false
+                -
+                  handle: link
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: link
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    replicator_preview: true
+                    hide_display: false
+          -
+            handle: footer_menu
+            field:
+              type: grid
+              display: 'Footer Menu'
+              fields:
+                -
+                  handle: text
+                  field:
+                    type: text
+                    display: Text
+                -
+                  handle: url
+                  field:
+                    type: text
+                    display: URL
+      -
+        display: 'Subscribe Section'
+        fields:
+          -
+            handle: placeholder
+            field:
+              type: text
+              display: 'fild placeholder'
+          -
+            handle: bottun
+            field:
+              max_rows: 1
+              type: grid
+              display: Bottun
+              fields:
+                -
+                  handle: text
+                  field:
+                    input_type: text
+                    antlers: false
+                    type: text
+                    display: text
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    replicator_preview: true
+                    hide_display: false
+                -
+                  handle: icon
+                  field:
+                    mode: grid
+                    container: assets
+                    restrict: false
+                    allow_uploads: true
+                    show_filename: true
+                    show_set_alt: true
+                    type: assets
+                    display: icon
+                    listable: hidden
+                    instructions_position: above
+                    visibility: visible
+                    replicator_preview: true
+                    hide_display: false
+                    max_files: 1
+          -
+            handle: form
+            field:
+              max_items: 1
+              type: form
+              display: Form
+          -
+            handle: privacy_consent_text
+            field:
+              type: textarea
+              display: privacy_consent_text

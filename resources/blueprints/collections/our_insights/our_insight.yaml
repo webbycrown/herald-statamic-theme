@@ -1,0 +1,116 @@
+title: 'Our Insight'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: author
+            field:
+              max_items: 1
+              mode: select
+              collections:
+                - our_consultant
+              type: entries
+              display: Author
+          -
+            handle: image
+            field:
+              max_files: 1
+              container: assets
+              type: assets
+              display: Image
+          -
+            handle: description
+            field:
+              type: textarea
+              display: Description
+          -
+            handle: button_text
+            field:
+              type: text
+              display: 'Button Text'
+              default: 'Read More'
+          -
+            handle: related_insight_text
+            field:
+              type: text
+              display: 'Related Insight Text'
+              default: 'Related Insights'
+          -
+            handle: related_insights
+            field:
+              mode: select
+              collections:
+                - our_insights
+              type: entries
+              display: 'Related Insights'
+          -
+            handle: content_sections
+            field:
+              type: replicator
+              display: 'Content Sections'
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    set:
+                      display: Set
+                      fields:
+                        -
+                          handle: heading
+                          field:
+                            type: text
+                            display: Heading
+                        -
+                          handle: paragraphs
+                          field:
+                            type: replicator
+                            display: Paragraphs
+                            sets:
+                              new_set_group:
+                                display: 'New Set Group'
+                                sets:
+                                  paragraphs_set:
+                                    display: 'Paragraphs set'
+                                    fields:
+                                      -
+                                        handle: paragraph
+                                        field:
+                                          type: textarea
+                                          display: Paragraph
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: date
+            field:
+              type: date
+              required: true
+              default: now
+              validate:
+                - required
+          -
+            handle: categories
+            field:
+              type: terms
+              taxonomies:
+                - insights_category
+              display: Categories
+              mode: select

@@ -1,0 +1,33 @@
+tree:
+  -
+    id: c200565b-f3bc-457a-812a-d26ac4cdf977
+    title: About
+    url: /about-us
+    data:
+      layouts: simple
+  -
+    id: 270dc07c-7308-4812-962a-3faadc5c8bad
+    title: Sections
+    url: /industries
+    data:
+      layouts: category-based-grouping
+  -
+    id: f4fcad18-dae4-45a1-8f0f-ed847b33c4ef
+    title: 'Coverage Desks'
+    url: /services
+    data:
+      layouts: grid
+  -
+    id: ef25f373-6369-4231-b8ae-93e256705166
+    title: 'News'
+    url: /insights
+    data:
+      layouts: category-based-grouping
+  -
+    id: a096d4af-e114-469d-b95a-396296cced7a
+    title: 'Features'
+    url: /case-studies
+  -
+    id: 0974612d-5d5f-4508-98bf-ec9f8e0ab6a5
+    title: Contact
+    url: /contact-us

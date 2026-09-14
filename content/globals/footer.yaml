@@ -1,0 +1,58 @@
+title: Footer
+data:
+  footer_about: 'Herald provides independent reporting on city hall, markets, and the people who shape them. Our desk files daily stories, features, and explainers you can trust.'
+  copyright_text: '© Copyright by Herald - All right reserved.'
+  policies:
+    -
+      id: ma24gu98
+      title: 'Privacy Policy'
+      link: /privacy-policy
+    -
+      id: ma24hdos
+      title: 'Terms & Conditions'
+      link: /terms-and-conditions
+  footer_menu:
+    -
+      id: mhn5mvi2
+      text: About
+      url: /about-us
+    -
+      id: mhn5n43x
+      text: Sections
+      url: /industries
+    -
+      id: mhn5nd5i
+      text: 'Coverage Desks'
+      url: /services
+    -
+      id: mhn5nlbq
+      text: 'News'
+      url: /insights
+    -
+      id: mhn5o34u
+      text: 'Features'
+      url: /case-studies
+    -
+      id: mhn5nut2
+      text: 'Reporters'
+      url: /consultants
+    -
+      id: mhn5ocza
+      text: Jobs
+      url: /careers
+    -
+      id: mhn5okzq
+      text: Contact
+      url: /contact-us
+  placeholder: 'Type about here...'
+  bottun:
+    -
+      id: ma3uth5k
+      text: Subscribe
+      link: /
+      icon: image/redirect.svg
+  form: newsletter
+  privacy_consent_text: |-
+    *I have read thed 
+    <a href="/privacy-policy" class="underline text-white hover:no-underline">Privacy Policy</a> 
+    an agree to its terms.

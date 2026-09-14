@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style id="theme-fouc">
+    html { background: #1E293B; }
+    html:has(body.is-ready) { background: #F1EFE8; }
+    body { margin: 0; }
+    body:not(.is-ready) { overflow: hidden; }
+    body:not(.is-ready) > *:not(.preloader) { visibility: hidden !important; }
+    body.is-ready { overflow: visible !important; }
+    .preloader {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 999999 !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: #1E293B !important;
+      overflow: hidden !important;
+    }
+    .preloader-mark {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preloader img {
+      width: 72px;
+      height: 72px;
+      max-width: 72px;
+      display: block;
+      border-radius: 50%;
+      animation: herald-preloader-fx 0.8s linear infinite;
+    }
+    .preloader.hidden { display: none !important; }
+    @keyframes herald-preloader-fx {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+  </style>
+  <noscript><style>body > * { visibility: visible !important; overflow: visible !important; }</style></noscript>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="app-env" content="{{ config:app.env }}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{{ if title }}{{ title }} | {{ site:name }}{{ else }}{{ site:name }}{{ /if }}</title>
+    <link rel="preload" href="/assets/css/custom.css" as="style">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css">
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    {{ vite src="resources/js/site.js|resources/css/site.css" }}
+    <style id="herald-type">
+      @font-face { font-family: Larken; src: local("Georgia"), local("Times New Roman"); }
+      @font-face { font-family: Satoshi; src: local("Georgia"), local("Times New Roman"); }
+      html, body, button, input, select, textarea,
+      h1, h2, h3, h4, h5, h6, p, span, li, a, label, div,
+      .font-Larken, .font-Satoshi {
+        font-family: Georgia, "Times New Roman", Times, serif !important;
+        letter-spacing: 0 !important;
+        word-spacing: normal !important;
+      }
+    </style>
+    {{ setting }}
+    <link rel="icon" type="image/png" href="{{ favicon }}">
+    {{ /setting }}
+
+</head>
+
+<body>
+
+    <!-- ====== preloader ====== -->
+    <div class="preloader">
+        <div class="preloader-mark">
+            {{ setting }}<img src="{{ loader }}" alt="">{{ /setting }}
+        </div>
+    </div>
+    <!-- ====== preloader ====== -->
+
+    <!-- ====== Cookie ====== -->
+    
+    {{ common_settings}}
+    <div id="cookie-banner" class="cookie-section fixed top-0 left-0 w-full h-full overflow-hidden flex items-center justify-center bg-black bg-opacity-60 z-[999] p-5">
+        <div class="w-full max-w-[850px] bg-white 2xl:px-[70px] xl:px-14 lg:px-12 md:px-8 2xl:py-11 xl:py-10 lg:py-9 md:py-8 p-7">
+            <p class="2xl:text-lg text-md leading-lineHeight mb-5 lg:mb-8 xl:mb-9 font-normal text-black tracking-wide">
+                {{description}}
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+    
+                {{button_2}}
+                <button id="accept-cookies" class="all-btn w-full sm:w-auto text-center sm:text-left {{add_class}}">
+                    {{text}}
+                    {{if icon ends_with ".svg"}}
+                    {{svg src="{icon}" class="ml-2 inline-block" width="14" height="13" viewBox="0 0 14 13"}}
+                    {{else}}
+                    <img src="{{icon}}" alt="" class="ml-2 inline-block" width="14" height="13">
+                    {{/if}}
+                </button>
+                {{/button_2}}
+            </div>
+        </div>
+    </div>
+    
+    
+    {{/common_settings}}
+
+    <main class="h-full overflow-x-hidden">
+
+        {{partial:header}}
+
+        {{ bard_field }}
+        {{ if type == "paragraph" }}
+        <p>
+            {{ content }}
+            {{ if type == "text" }}
+            {{ text }}
+            {{ /if }}
+            {{ /content }}
+        </p>
+        {{ /if }}
+
+        {{template_content}}
+
+        {{partial:footer}}
+
+    </main>
+    <script type="text/javascript" src="{{ theme:asset src='assets/js/jquery.min.js' }}"></script>
+    <script type="text/javascript" src="{{ theme:asset src='assets/js/jquery.magnific-popup.min.js' }}"></script>
+    <script type="text/javascript" src="{{ theme:asset src='assets/js/swiper-bundle.min.js' }}"></script>
+    <script type="text/javascript" src="{{ theme:asset src='assets/js/all.min.js' }}"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="{{ theme:asset src='assets/js/custom.js' }}" defer></script>
+    <script type="text/javascript">
+        const newsLetterUrl = "{{ route:newsLetter }}";
+    </script>
+<script>
+(function () {
+  function themeReveal() {
+    if (!document.body || document.body.classList.contains("is-ready")) return;
+    document.body.classList.add("is-ready");
+    document.body.classList.remove("no-scroll", "overflow-hidden");
+    var pre = document.querySelector(".preloader");
+    if (pre) {
+      pre.style.opacity = "0";
+      pre.style.pointerEvents = "none";
+      setTimeout(function () { pre.style.display = "none"; pre.classList.add("hidden"); }, 250);
+    }
+  }
+  if (document.readyState === "complete") themeReveal();
+  else window.addEventListener("load", themeReveal);
+  setTimeout(themeReveal, 1200);
+})();
+</script>
+</body>
+
+</html>

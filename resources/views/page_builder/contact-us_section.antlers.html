@@ -1,0 +1,108 @@
+<section class="relative overflow-hidden py-7 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16 2xl:pt-20">
+    <div class="container">
+        <h1 class="2xl:text-4xl 1xl:text-3xl xl:text-2xl lg:text-1xl sm:text-32 text-xl !leading-lineHeight text-black font-Larken font-medium xl:mb-[60px] lg:mb-12 mb-10">
+            {{ title }}
+        </h1>
+        <div class="flex flex-col gap-8 lg:gap-14 xl:gap-18 2xl:gap-20 md:flex-row">
+            <div class="w-full max-w-[710px]">
+                <div class="max-w-[600px] xl:mb-[60px] lg:mb-12 mb-10">
+                    <h2 class="lg:text-25 sm:text-20 text-lg mb-3 !leading-lineHeight text-black font-Larken font-medium">
+                    {{ section_title }}</h2>
+                    <p class="2xl:text-lg text-md leading-lineHeight font-normal text-gray-800">{{ description }}</p>
+                </div>
+
+                {{ form:contact-us id="contactForm" ajax="true" }}
+                <div class="herald-contact-grid">
+                    {{ fields }}
+                        {{ if type == "text" or type == "email" or type == "tel" }}
+                        <label class="herald-contact-field">
+                            <span class="herald-contact-label">{{ display }}</span>
+                            <input type="{{ input_type ?? type }}" name="{{ handle }}" placeholder="{{ display }}" value="{{ old:handle }}" class="herald-contact-input">
+                            <span class="field-error text-red-500" data-error-for="{{ handle }}">{{ error }}</span>
+                        </label>
+                        {{ /if }}
+
+                        {{ if type == "select" }}
+                        <label class="herald-contact-field">
+                            <span class="herald-contact-label">{{ display }}</span>
+                            <select class="herald-contact-input" name="{{ handle }}">
+                                <option value="" disabled selected>How can the desk help?</option>
+                                {{ foreach:options as="option|label" }}
+                                <option value="{{ option }}">{{ label ?? option }}</option>
+                                {{ /foreach:options }}
+                            </select>
+                            <span class="field-error text-red-500" data-error-for="{{ handle }}">{{ error }}</span>
+                        </label>
+                        {{ /if }}
+                    {{ /fields }}
+                </div>
+
+                <div class="herald-contact-message">
+                    {{ fields }}
+                    {{ if type == "textarea" }}
+                    <label class="herald-contact-field herald-contact-field--full">
+                        <span class="herald-contact-label">{{ display }}</span>
+                        <textarea name="{{ handle }}" placeholder="{{ display }}" rows="5" class="herald-contact-input herald-contact-textarea">{{ old:handle }}</textarea>
+                        <span class="field-error text-red-500" data-error-for="{{ handle }}">{{ error }}</span>
+                    </label>
+                    {{ /if }}
+                    {{ /fields }}
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" class="all-btn btn-outline bg-vividblue-400 border-vividblue-400 mb-4 lg:mb-7">
+                        Submit
+                        <svg class="ml-2 inline-block" width="14" height="13" viewBox="0 0 14 13" fill="none">
+                            <path d="M1.42871 12.1428L12.5716 1M12.5716 1V11.6972M12.5716 1H1.87443" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="form-message"></p>
+                {{ /form:contact-us }}  
+            </div>
+
+            <div class="bg-gray-700 md:w-[1px] md:h-auto h-[1px] w-full"></div>
+
+            <div class="w-full max-w-[530px] md:pl-[10px]">
+                <div class="flex flex-col 2xl:gap-16 xl:gap-12 gap-10">
+                    {{ contact_information }}
+                    <div>
+                        <h2 class="lg:text-25 sm:text-20 text-lg mb-2 leading-lineHeight text-black font-Larken font-medium">
+                        {{ title }}</h2>
+                        <p class="2xl:text-lg text-md leading-lineHeight font-normal text-gray-800 mb-[18px]">{{
+                        description }}</p>
+                        <div class="flex items-center gap-4">
+                            {{item_data}}
+                            <span class="shrink-0 md:w-[46px] md:h-[46px] w-9 h-9 rounded-full bg-black text-white flex items-center justify-center p-2.5">
+                                {{if icon ends_with ".svg"}}
+                                {{ svg src="{icon}" width="25" height="23" viewBox="0 0 17 21" fill="none" }}
+                                {{ else }}
+                                <img src="{{ icon }}" alt="" width="20" height="16">
+                                {{ /if }}
+                            </span>
+                            {{ if contact_type == "phone" }}
+                            <a href="tel:{{ text }}" class="2xl:text-lg text-md font-medium text-black hover:text-vividblue-400">{{ text
+                            }}</a>
+                            {{ elseif contact_type == "email" }}
+                            <a href="mailto:{{ text }}" class="2xl:text-lg text-md font-medium text-black hover:text-vividblue-400">{{ text
+                            }}</a>
+                            {{ elseif contact_type == "link" }}
+                            <a href="{{ link }}" target="_blank" class="2xl:text-lg text-md font-medium text-black hover:text-vividblue-400">{{ text
+                            }}</a>
+                            {{ /if }}
+                            {{/item_data}}
+                        </div>
+                    </div>
+                    {{ /contact_information }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== Map Section ====== -->
+<div class="relative py-7 sm:py-8 md:py-10 lg:py-12 xl:py-14 2xl:py-16">
+    <div class="container">
+        {{ information_embed }}
+    </div>
+</div>

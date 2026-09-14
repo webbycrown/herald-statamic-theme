@@ -1,0 +1,43 @@
+<div class="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 md:gap-8 lg:gap-10 grid_append">
+    {{list}}
+
+    <div class="bg-white border border-gray-700 border-t-0 grid-item-append">
+        <div class="relative w-full before:content-[''] before:block before:pt-[63%] overview-hidden mb-0">
+            <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{image}}" alt="">
+        </div>
+        <div class="p-6">
+            <div class="flex flex-wrap gap-3 mb-4">
+                <label
+                    class="font-Satoshi font-bold text-white text-13 bg-vividblue-400 py-1 px-[14px] rounded-2xl uppercase">{{date}}</label>
+                <a href="{{url}}"
+                    class="font-Satoshi font-normal text-black hover:text-vividblue-400 text-md relative pl-4 before:content-[''] before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:w-1 before:h-1 before:bg-black before:rounded-full before:rounded-full">By {{author.title}}</a>
+            </div>
+            <h4
+                class="lg:text-25 sm:text-20 text-lg mb-2 leading-lineHeight text-black hover:text-vividblue-400 font-Larken font-medium">
+                <a href="{{url}}" class="text-currentColor">{{title}}</a>
+            </h4>
+            <p class="text-md leading-lineHeight font-normal text-gray-800">{{thumb_description}}</p>
+            {{button}}
+            <a href="{{url}}"
+                class="mt-5 font-bold flex items-center md:text-lg text-md hover:text-black text-vividblue-400">
+                {{text}}
+                {{ if icon ends_with ".svg" }}
+                {{ svg src='{{icon}}' class="ml-1" width="16" height="16" viewBox="0 0 16 16" fill="none" }}
+                {{ else }}
+                <img src="{{ icon }}" class="ml-1" width="16" height="16" alt="">
+                {{ /if }}
+            </a>
+            {{ /button }}
+        </div>
+    </div>
+
+    {{/list}}
+</div>
+
+<div class="text-center pt-6 md:pt-8 lg:pt-10 xl:pt-12 2xl:pt-[50px] pagination-part pagination">
+    <nav class="isolate inline-flex" aria-label="Pagination">
+        {{ paginate }}
+        {{partial:pagination}}
+        {{ /paginate }}
+    </nav>
+</div>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Herald — theme color options</title>
+  <style>
+    :root { --ink:#111; --paper:#f7f4ee; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    header.page {
+      padding: 48px 24px 28px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    header.page h1 { font-size: 42px; font-weight: 500; margin: 0 0 10px; }
+    header.page p { margin: 0; max-width: 640px; line-height: 1.5; color: #444; }
+    .grid {
+      max-width: 1280px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e6e1d8;
+    }
+    .card.current { outline: 3px solid #0F766E; outline-offset: 2px; }
+    .preview {
+      --ink: #1E293B;
+      --accent: #0F766E;
+      --paper: #F1EFE8;
+      background: var(--paper);
+    }
+    .mast {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 18px 20px 16px;
+      border-top: 4px solid var(--accent);
+    }
+    .word {
+      font-size: 22px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+    .rule { height: 2px; background: var(--accent); margin: 8px 0 6px; width: 92px; }
+    .sub { font-size: 10px; letter-spacing: 2.2px; color: var(--accent); }
+    .hero {
+      padding: 22px 20px 8px;
+    }
+    .hero h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; color: var(--ink); }
+    .hero p { margin: 0 0 14px; font-size: 14px; line-height: 1.45; color: #444; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .split { display: grid; grid-template-columns: 1fr 1fr; min-height: 72px; }
+    .split .a { background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .split .b { background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 14px 20px 18px; }
+    .mini {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      padding: 10px;
+      font-size: 12px;
+      color: var(--ink);
+    }
+    .mini b { display: block; margin-bottom: 4px; }
+    .loader-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px 18px;
+      background: var(--ink);
+    }
+    .spin {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent);
+      position: relative;
+    }
+    .spin::after {
+      content: "";
+      position: absolute; inset: 8px;
+      border: 2.5px solid rgba(244,239,230,.25);
+      border-top-color: var(--paper);
+      border-radius: 50%;
+    }
+    .spin i {
+      position: absolute; inset: 16px;
+      background: var(--paper);
+      border-radius: 50%;
+    }
+    .loader-row span { color: var(--paper); font-size: 13px; }
+    .meta { padding: 16px 20px 20px; border-top: 1px solid #eee; }
+    .meta h2 { margin: 0 0 4px; font-size: 18px; font-weight: 500; }
+    .meta .tag { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #777; }
+    .swatches { display: flex; gap: 8px; margin: 12px 0; }
+    .swatch { width: 36px; height: 36px; border: 1px solid rgba(0,0,0,.12); }
+    .hex { font-size: 12px; line-height: 1.55; color: #333; font-family: ui-monospace, Menlo, monospace; }
+    .hex b { display: inline-block; width: 72px; font-family: Georgia, serif; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="page">
+    <h1>Herald theme color options</h1>
+    <p>Eight palettes you can use. Current live site is marked. Each card shows header, buttons, tip/newsroom bands, story tiles, and the round loader.</p>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const themes = [
+      {
+        id: "crimson",
+        current: false,
+        name: "Crimson Desk",
+        note: "Original",
+        ink: "#111111",
+        accent: "#B91C1C",
+        paper: "#F4EFE6"
+      },
+      {
+        id: "signal",
+        name: "Signal Red",
+        note: "Classic newspaper",
+        ink: "#0A0A0A",
+        accent: "#D00000",
+        paper: "#FAF7F2"
+      },
+      {
+        id: "navy",
+        name: "Midnight Navy",
+        note: "Evening edition",
+        ink: "#0B1F3A",
+        accent: "#C41E3A",
+        paper: "#F3EFE6"
+      },
+      {
+        id: "gold",
+        name: "Ink & Gold",
+        note: "Sunday magazine",
+        ink: "#161513",
+        accent: "#C4A35A",
+        paper: "#F6F1E6"
+      },
+      {
+        id: "copper",
+        name: "Charcoal Copper",
+        note: "Warm city",
+        ink: "#1A1816",
+        accent: "#B4532A",
+        paper: "#F3EDE4"
+      },
+      {
+        id: "forest",
+        name: "Forest Masthead",
+        note: "Weekend longform",
+        ink: "#14241C",
+        accent: "#2F6B4F",
+        paper: "#F2EFE6"
+      },
+      {
+        id: "slate",
+        current: true,
+        name: "Slate Teal",
+        note: "Live now",
+        ink: "#1E293B",
+        accent: "#0F766E",
+        paper: "#F1EFE8"
+      },
+      {
+        id: "espresso",
+        name: "Espresso Rust",
+        note: "Culture desk",
+        ink: "#2C1810",
+        accent: "#9A3412",
+        paper: "#F5EFE6"
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    themes.forEach((t) => {
+      const el = document.createElement("article");
+      el.className = "card" + (t.current ? " current" : "");
+      el.innerHTML = `
+        <div class="preview" style="--ink:${t.ink};--accent:${t.accent};--paper:${t.paper}">
+          <div class="mast">
+            <div class="word">HERALD</div>
+            <div class="rule"></div>
+            <div class="sub">THE CITY DESK</div>
+          </div>
+          <div class="hero">
+            <h3>Desks that cover the day</h3>
+            <p>Named reporters. Dated stories. A public correction window.</p>
+            <div class="row">
+              <a class="btn" href="#">Read more</a>
+              <a class="btn ghost" href="#">Send a tip</a>
+            </div>
+          </div>
+          <div class="cards">
+            <div class="mini"><b>City Desk</b>Council after midnight.</div>
+            <div class="mini"><b>Markets</b>Open and close.</div>
+            <div class="mini"><b>Politics</b>The vote count.</div>
+          </div>
+          <div class="split">
+            <div class="a">Have a tip?</div>
+            <div class="b">Join the newsroom</div>
+          </div>
+          <div class="loader-row">
+            <div class="spin"><i></i></div>
+            <span>Round loader + favicon</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="tag">${t.current ? "Current live theme" : t.note}</div>
+          <h2>${t.name}</h2>
+          <div class="swatches">
+            <div class="swatch" style="background:${t.ink}" title="ink"></div>
+            <div class="swatch" style="background:${t.accent}" title="accent"></div>
+            <div class="swatch" style="background:${t.paper}" title="paper"></div>
+          </div>
+          <div class="hex">
+            <div><b>Ink</b> ${t.ink}</div>
+            <div><b>Accent</b> ${t.accent}</div>
+            <div><b>Paper</b> ${t.paper}</div>
+          </div>
+        </div>`;
+      grid.appendChild(el);
+    });
+  </script>
+</body>
+</html>

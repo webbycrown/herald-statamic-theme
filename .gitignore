@@ -1,0 +1,10 @@
+/node_modules
+/vendor
+.env
+.env.*
+!.env.example
+/storage/tmp-fonts
+/storage/forms/**/*.yaml
+/storage/rewrite-news.py
+/public/assets/image/*.zip
+/public/assets/images/marketplace/*.zip
