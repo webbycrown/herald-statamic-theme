@@ -3,7 +3,7 @@
     "type": "statamic-starter-kit",
     "description": "News starter kit with dated stories, sections, reporters, features, and a newsroom careers desk.",
     "require": {
-        "statamic/cms": "*"
+        "statamic/cms": "^5.0"
     },
     "extra": {
         "statamic": {
