@@ -1,3 +1,6 @@
+title: Herald Theme
+user: webbycrown
+repo: webbycrown/herald-statamic-theme
 export_paths:
   - routes
   - content

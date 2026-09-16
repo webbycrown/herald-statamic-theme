@@ -46,3 +46,23 @@ php please starter-kit:install webbycrown/herald-statamic-theme
 ```
 
 See [THIRD_PARTY.md](THIRD_PARTY.md) for bundled front-end libraries, fonts, and sample imagery licences.
+
+## Theme sections
+
+Every marketing page uses one **Page** template. Add, remove, or reorder Theme sections in the Control Panel.
+
+
+## Control Panel Forms
+
+| Handle | Purpose |
+| --- | --- |
+| `contact-us` | Form |
+| `newsletter` | Form |
+| `job_apply` | Form |
+
+
+Statamic Core includes one form. Use **Statamic Pro** if you keep all 3.
+
+
+Site logo, contact, and social links live in **Globals**.
+

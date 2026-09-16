@@ -1,7 +1,5 @@
-<div class="herald-stripes">
-{{ page_builder scope="block" }}
-<div class="herald-stripe">
+{{ if page_builder }}
+{{ page_builder }}
 {{ partial src="page_builder/{type}" }}
-</div>
 {{ /page_builder }}
-</div>
+{{ /if }}

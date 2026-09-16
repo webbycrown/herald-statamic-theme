@@ -5,7 +5,7 @@ title: News
 author: 7fab386b-3c2a-480d-b06f-dbbe0f8adf74
 updated_by: 7fab386b-3c2a-480d-b06f-dbbe0f8adf74
 updated_at: 1762411880
-template: our_insights/index
+template: page
 description: 'Read the day’s stories, opinion, and investigations. Browse by desk, reporter, or section.'
 page_builder:
   -
